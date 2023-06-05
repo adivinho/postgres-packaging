@@ -123,6 +123,8 @@ get_sources(){
         git clean -xdf
         git checkout "$BRANCH"
         git submodule update --init
+        # https://github.com/darold/pgbadger/issues/773
+        sed -i 's:12.0:12.1:g' pgbadger 
     fi
     REVISION=$(git rev-parse --short HEAD)
     echo "REVISION=${REVISION}" >> ${WORKDIR}/pgbadger.properties
